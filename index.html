@@ -23,29 +23,85 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background-color: #0a0a1a;
+            overflow: hidden;
         }
         
-        .bg-image {
+        .street-map {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            animation: pulse 15s infinite alternate;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(#333 2px, transparent 2px),
+                linear-gradient(90deg, #333 2px, transparent 2px),
+                linear-gradient(#333 1px, transparent 1px),
+                linear-gradient(90deg, #333 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+            opacity: 0.7;
+            animation: moveMap 60s linear infinite;
         }
         
-        @keyframes pulse {
+        @keyframes moveMap {
             0% {
-                opacity: 0.3;
-                transform: scale(1);
+                transform: translate(0, 0);
             }
             100% {
-                opacity: 0.5;
-                transform: scale(1.02);
+                transform: translate(-50%, -50%);
+            }
+        }
+        
+        .moto {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ffcc00;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 0 5px #1a1a2e,
+                0 0 0 7px #ffcc00;
+            animation: moveMoto 15s linear infinite;
+            z-index: 2;
+        }
+        
+        .moto::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: #1a1a2e;
+            border-radius: 50%;
+        }
+        
+        @keyframes moveMoto {
+            0% {
+                top: 10%;
+                left: 10%;
+                transform: rotate(0deg);
+            }
+            25% {
+                top: 10%;
+                left: 80%;
+                transform: rotate(90deg);
+            }
+            50% {
+                top: 80%;
+                left: 80%;
+                transform: rotate(180deg);
+            }
+            75% {
+                top: 80%;
+                left: 10%;
+                transform: rotate(270deg);
+            }
+            100% {
+                top: 10%;
+                left: 10%;
+                transform: rotate(360deg);
             }
         }
         
@@ -240,7 +296,8 @@
 </head>
 <body>
     <div class="bg-container">
-        <div class="bg-image" style="background-image: url('FT%20FUNDO.jpg');"></div>
+        <div class="street-map"></div>
+        <div class="moto"></div>
     </div>
     
     <div class="content">
@@ -262,175 +319,4 @@
     </div>
     
     <div class="stats-panel" id="statsPanel">
-        <h2>Estatísticas</h2>
-        <p>Total de acessos: <span id="totalVisits">0</span></p>
-        <p>Total de cópias: <span id="totalCopies">0</span></p>
-        <button class="close-btn" id="closeStats">Fechar</button>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
-    <script>
-        // Contadores
-        let totalVisits = localStorage.getItem('totalVisits') ? parseInt(localStorage.getItem('totalVisits')) : 0;
-        let totalCopies = localStorage.getItem('totalCopies') ? parseInt(localStorage.getItem('totalCopies')) : 0;
-        
-        // Incrementar contador de visitas
-        totalVisits++;
-        localStorage.setItem('totalVisits', totalVisits);
-        
-        // Elementos DOM
-        const copyBtn = document.getElementById('copyBtn');
-        const pixCode = document.getElementById('pixCode');
-        const statsPanel = document.getElementById('statsPanel');
-        const closeStats = document.getElementById('closeStats');
-        const totalVisitsSpan = document.getElementById('totalVisits');
-        const totalCopiesSpan = document.getElementById('totalCopies');
-        
-        // Atualizar contadores no painel
-        totalVisitsSpan.textContent = totalVisits;
-        totalCopiesSpan.textContent = totalCopies;
-        
-        // Configuração de fogos de artifício
-        const container = document.querySelector('.bg-container');
-        const fireworks = new Fireworks.default(container, {
-            autoresize: true,
-            opacity: 0.5,
-            acceleration: 1.05,
-            friction: 0.97,
-            gravity: 1.5,
-            particles: 100,
-            traceLength: 3,
-            traceSpeed: 10,
-            explosion: 5,
-            intensity: 30,
-            flickering: 50,
-            lineStyle: 'round',
-            hue: {
-                min: 30,
-                max: 60
-            },
-            delay: {
-                min: 30,
-                max: 60
-            },
-            rocketsPoint: {
-                min: 50,
-                max: 50
-            },
-            lineWidth: {
-                explosion: {
-                    min: 1,
-                    max: 3
-                },
-                trace: {
-                    min: 1,
-                    max: 2
-                }
-            },
-            brightness: {
-                min: 50,
-                max: 80
-            }
-        });
-        
-        // Copiar PIX - Versão corrigida
-        copyBtn.addEventListener('click', async function() {
-            try {
-                await navigator.clipboard.writeText(pixCode.textContent);
-                
-                // Efeito visual
-                copyBtn.textContent = 'COPIADO!';
-                copyBtn.style.background = 'linear-gradient(135deg, #00ff88 0%, #00b356 100%)';
-                
-                // Incrementar contador de cópias
-                totalCopies++;
-                localStorage.setItem('totalCopies', totalCopies);
-                totalCopiesSpan.textContent = totalCopies;
-                
-                // Ativar fogos de artifício
-                fireworks.start();
-                setTimeout(() => {
-                    fireworks.stop();
-                }, 2000);
-                
-                // Resetar botão após 2 segundos
-                setTimeout(() => {
-                    copyBtn.textContent = 'COPIA E COLA';
-                    copyBtn.style.background = 'linear-gradient(135deg, #ffcc00 0%, #ff9500 100%)';
-                }, 2000);
-            } catch (err) {
-                console.error('Erro ao copiar: ', err);
-                copyBtn.textContent = 'ERRO AO COPIAR';
-                copyBtn.style.background = 'linear-gradient(135deg, #ff0000 0%, #990000 100%)';
-                
-                // Método alternativo para navegadores mais antigos
-                const textArea = document.createElement('textarea');
-                textArea.value = pixCode.textContent;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    copyBtn.textContent = 'COPIADO!';
-                    copyBtn.style.background = 'linear-gradient(135deg, #00ff88 0%, #00b356 100%)';
-                    
-                    // Incrementar contador de cópias
-                    totalCopies++;
-                    localStorage.setItem('totalCopies', totalCopies);
-                    totalCopiesSpan.textContent = totalCopies;
-                    
-                    // Ativar fogos de artifício
-                    fireworks.start();
-                    setTimeout(() => {
-                        fireworks.stop();
-                    }, 2000);
-                } catch (err) {
-                    console.error('Erro ao copiar (método alternativo): ', err);
-                }
-                document.body.removeChild(textArea);
-                
-                setTimeout(() => {
-                    copyBtn.textContent = 'COPIA E COLA';
-                    copyBtn.style.background = 'linear-gradient(135deg, #ffcc00 0%, #ff9500 100%)';
-                }, 2000);
-            }
-        });
-        
-        // Comandos de teclado
-        const pressedKeys = [];
-        const secretCodeShow = ['Control', 'Alt', 'c'];
-        const secretCodeReset = ['Control', 'Alt', 'r'];
-        
-        window.addEventListener('keydown', (e) => {
-            pressedKeys.push(e.key);
-            
-            // Verificar código para mostrar estatísticas
-            if (pressedKeys.slice(-secretCodeShow.length).join('') === secretCodeShow.join('')) {
-                statsPanel.style.display = 'block';
-            }
-            
-            // Verificar código para resetar estatísticas
-            if (pressedKeys.slice(-secretCodeReset.length).join('') === secretCodeReset.join('')) {
-                if (confirm('Tem certeza que deseja resetar todas as estatísticas?')) {
-                    totalVisits = 0;
-                    totalCopies = 0;
-                    localStorage.setItem('totalVisits', 0);
-                    localStorage.setItem('totalCopies', 0);
-                    totalVisitsSpan.textContent = '0';
-                    totalCopiesSpan.textContent = '0';
-                    alert('Estatísticas resetadas com sucesso!');
-                }
-            }
-            
-            // Manter array com tamanho máximo
-            if (pressedKeys.length > 10) {
-                pressedKeys.shift();
-            }
-        });
-        
-        // Fechar painel de estatísticas
-        closeStats.addEventListener('click', () => {
-            statsPanel.style.display = 'none';
-        });
-    </script>
-</body>
-</html>
+        <h2>
