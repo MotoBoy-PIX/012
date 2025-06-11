@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajude o Motoboy!</title>
+  <style>
+    body {
+      background-image: url('FT%20FUNDO.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+
+    .texto {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .botao-pix {
+      background: linear-gradient(to right, #ffcc00, #ff9900);
+      border: none;
+      color: black;
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 1rem 2rem;
+      margin: 2rem auto;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 0 15px yellow;
+      animation: pulse 2s infinite;
+      display: inline-block;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px yellow; }
+      50% { box-shadow: 0 0 25px orange; }
+      100% { box-shadow: 0 0 10px yellow; }
+    }
+
+    #contador {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="texto">
+    <h1>ENTREGUEI SUA ENCOMENDA... E AGORA ENTREGO UM PEDIDO!</h1>
+    <p>Fala aí! Sou motoboy das ruas e dos corres. Enquanto levo suas encomendas, também tô tentando correr atrás dos meus sonhos.<br>
+    Se quiser me dar uma força com um café, uma ajuda na gasolina, ou só uma boa energia já tá valendo demais.</p>
+
+    <p>Pode ser um lanche, um real ou só aquele "vai na fé"</p>
+    <p>Valeu pela moral! 🙏✌🏍💨</p>
+
+    <button class="botao-pix" onclick="copiarPIX()">COPIE E COLE<br>PIX: 0c397cfc-9a35-4be7-a550-3fcb5c9d1afb</button>
+
+    <p><small>Este site não coleta dados pessoais. Os contadores usam apenas localStorage anônimo, sem identificação individual.</small></p>
+  </div>
+
+  <div id="contador">Acessos: <span id="acessos"></span><br>Botões clicados: <span id="clicks"></span></div>
+
+  <canvas id="fireworks"></canvas>
+
+  <script>
+    let acessos = localStorage.getItem('acessos') || 0;
+    let clicks = localStorage.getItem('clicks') || 0;
+    acessos++;
+    localStorage.setItem('acessos', acessos);
+    document.getElementById('acessos').textContent = acessos;
+    document.getElementById('clicks').textContent = clicks;
+
+    function copiarPIX() {
+      navigator.clipboard.writeText('0c397cfc-9a35-4be7-a550-3fcb5c9d1afb');
+      clicks++;
+      localStorage.setItem('clicks', clicks);
+      document.getElementById('clicks').textContent = clicks;
+      explodirFogos();
+    }
+
+    // Teclas de atalho: Ctrl+Alt+C para mostrar, Ctrl+Alt+R para resetar
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.altKey && e.code === 'KeyC') {
+        document.getElementById('contador').style.display = 'block';
+        setTimeout(() => document.getElementById('contador').style.display = 'none', 5000);
+      }
+      if (e.ctrlKey && e.altKey && e.code === 'KeyR') {
+        localStorage.setItem('acessos', 0);
+        localStorage.setItem('clicks', 0);
+      }
+    });
+
+    // Animação de fogos
+    function explodirFogos() {
+      const canvas = document.getElementById('fireworks');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      for (let i = 0; i < 100; i++) {
+        const x = canvas.width / 2;
+        const y = canvas.height / 2;
+        const angle = Math.random() * 2 * Math.PI;
+        const radius = Math.random() * 200;
+        const fx = x + radius * Math.cos(angle);
+        const fy = y + radius * Math.sin(angle);
+        const color = 'hsl(' + Math.floor(Math.random() * 360) + ', 100%, 50%)';
+        ctx.beginPath();
+        ctx.arc(fx, fy, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+      setTimeout(() => ctx.clearRect(0, 0, canvas.width, canvas.height), 1000);
+    }
+  </script>
+</body>
+</html>
