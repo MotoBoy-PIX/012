@@ -23,31 +23,8 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-        
-        .bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('FT FUNDO.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            animation: pulse 15s infinite alternate;
-        }
-        
-        @keyframes pulse {
-            0% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.5;
-                transform: scale(1.02);
-            }
+            background: linear-gradient(135deg, #e74c3c 0%, #e67e22 50%, #f1c40f 100%);
+            overflow: hidden;
         }
         
         .content {
@@ -65,46 +42,38 @@
             font-size: 2.5rem;
             margin-bottom: 30px;
             text-transform: uppercase;
-            color: #ffcc00;
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-            animation: glow 2s infinite alternate;
-        }
-        
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
-            }
-            to {
-                text-shadow: 0 0 20px rgba(255, 204, 0, 0.8), 0 0 30px rgba(255, 204, 0, 0.6);
-            }
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         p {
             font-size: 1.2rem;
             line-height: 1.6;
             margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .highlight {
-            color: #ffcc00;
+            color: #fff;
             font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
         
         .pix-code {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 15px;
             border-radius: 10px;
             margin: 30px 0;
             font-family: monospace;
             font-size: 1.1rem;
             word-break: break-all;
-            border: 1px solid #ffcc00;
+            border: 1px solid #fff;
+            color: #fff;
         }
         
         .copy-btn {
-            background: linear-gradient(135deg, #ffcc00 0%, #ff9500 100%);
-            color: #1a1a2e;
+            background: linear-gradient(135deg, #f1c40f 0%, #e67e22 100%);
+            color: #2c3e50;
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -113,93 +82,27 @@
             cursor: pointer;
             margin-top: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-            animation: shine 3s infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .copy-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.6);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
         
         .copy-btn:active {
             transform: translateY(1px);
         }
         
-        @keyframes shine {
-            0% {
-                box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
-            }
-            100% {
-                box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
-            }
-        }
-        
-        .copy-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(30deg);
-            animation: reflect 3s infinite;
-        }
-        
-        @keyframes reflect {
-            0% {
-                left: -100%;
-            }
-            20%, 100% {
-                left: 100%;
-            }
-        }
-        
         .emoji {
             font-size: 1.5rem;
             margin: 0 5px;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
         }
         
         .lgpd {
             font-size: 0.8rem;
             margin-top: 50px;
             opacity: 0.7;
-        }
-        
-        .firework {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: explode 1s ease-out forwards;
-        }
-        
-        @keyframes explode {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(20);
-                opacity: 0;
-            }
         }
         
         .stats-panel {
@@ -210,15 +113,15 @@
             background-color: rgba(0, 0, 0, 0.9);
             padding: 20px;
             border-radius: 10px;
-            border: 2px solid #ffcc00;
+            border: 2px solid #f1c40f;
             z-index: 100;
             display: none;
             text-align: center;
-            box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
         }
         
         .stats-panel h2 {
-            color: #ffcc00;
+            color: #f1c40f;
             margin-top: 0;
         }
         
@@ -228,8 +131,8 @@
         }
         
         .stats-panel .close-btn {
-            background-color: #ffcc00;
-            color: #1a1a2e;
+            background-color: #f1c40f;
+            color: #2c3e50;
             border: none;
             padding: 5px 15px;
             border-radius: 5px;
@@ -237,12 +140,18 @@
             margin-top: 15px;
             font-weight: bold;
         }
+        
+        .testimonials {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 3px solid #f1c40f;
+        }
     </style>
 </head>
 <body>
-    <div class="bg-container">
-        <div class="bg-image"></div>
-    </div>
+    <div class="bg-container"></div>
     
     <div class="content">
         <h1>ENTREGUEI SUA ENCOMENDA... <br>E AGORA ENTREGO UM PEDIDO!</h1>
@@ -250,6 +159,11 @@
         <p>Fala aí! Sou motoboy das ruas e dos corres. Enquanto levo suas encomendas, também tô tentando correr atrás dos meus sonhos.</p>
         
         <p>Se quiser me dar uma força <span class="highlight">com um café</span>, uma ajuda na <span class="highlight">gasolina</span>, ou só uma <span class="highlight">boa energia</span> já tá valendo demais.</p>
+        
+        <div class="testimonials">
+            <p>"Esse motoboy é rápido e confiável! Sempre que preciso, ele está lá."</p>
+            <p>- Cliente Satisfeito</p>
+        </div>
         
         <p>Pode ser um lanche, um real ou só aquele <span class="highlight">"vai na fé"</span></p>
         
@@ -263,147 +177,28 @@
     </div>
     
     <div class="stats-panel" id="statsPanel">
-        <h2>Estatísticas</h2>
-        <p>Total de acessos: <span id="totalVisits">0</span></p>
-        <p>Total de cópias: <span id="totalCopies">0</span></p>
+        <h2>Obrigado pelo apoio!</h2>
+        <p>Sua contribuição ajuda a manter meu sonho na estrada.</p>
         <button class="close-btn" id="closeStats">Fechar</button>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+
     <script>
-        // Contadores
-        let totalVisits = localStorage.getItem('totalVisits') ? parseInt(localStorage.getItem('totalVisits')) : 0;
-        let totalCopies = localStorage.getItem('totalCopies') ? parseInt(localStorage.getItem('totalCopies')) : 0;
-        
-        // Incrementar contador de visitas
-        totalVisits++;
-        localStorage.setItem('totalVisits', totalVisits);
-        
-        // Elementos DOM
-        const copyBtn = document.getElementById('copyBtn');
-        const pixCode = document.getElementById('pixCode');
-        const statsPanel = document.getElementById('statsPanel');
-        const closeStats = document.getElementById('closeStats');
-        const totalVisitsSpan = document.getElementById('totalVisits');
-        const totalCopiesSpan = document.getElementById('totalCopies');
-        
-        // Atualizar contadores no painel
-        totalVisitsSpan.textContent = totalVisits;
-        totalCopiesSpan.textContent = totalCopies;
-        
-        // Configuração de fogos de artifício
-        const container = document.querySelector('.bg-container');
-        const fireworks = new Fireworks.default(container, {
-            autoresize: true,
-            opacity: 0.5,
-            acceleration: 1.05,
-            friction: 0.97,
-            gravity: 1.5,
-            particles: 100,
-            traceLength: 3,
-            traceSpeed: 10,
-            explosion: 5,
-            intensity: 30,
-            flickering: 50,
-            lineStyle: 'round',
-            hue: {
-                min: 30,
-                max: 60
-            },
-            delay: {
-                min: 30,
-                max: 60
-            },
-            rocketsPoint: {
-                min: 50,
-                max: 50
-            },
-            lineWidth: {
-                explosion: {
-                    min: 1,
-                    max: 3
-                },
-                trace: {
-                    min: 1,
-                    max: 2
-                }
-            },
-            brightness: {
-                min: 50,
-                max: 80
-            }
+        // Script para copiar o PIX
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const pixCode = document.getElementById('pixCode');
+            const range = document.createRange();
+            range.selectNode(pixCode);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            
+            // Mostrar painel de agradecimento
+            document.getElementById('statsPanel').style.display = 'block';
         });
         
-        // Copiar PIX
-        copyBtn.addEventListener('click', function() {
-            navigator.clipboard.writeText(pixCode.textContent).then(() => {
-                // Efeito visual
-                copyBtn.textContent = 'COPIADO!';
-                copyBtn.style.background = 'linear-gradient(135deg, #00ff88 0%, #00b356 100%)';
-                
-                // Incrementar contador de cópias
-                totalCopies++;
-                localStorage.setItem('totalCopies', totalCopies);
-                totalCopiesSpan.textContent = totalCopies;
-                
-                // Ativar fogos de artifício
-                fireworks.start();
-                setTimeout(() => {
-                    fireworks.stop();
-                }, 2000);
-                
-                // Resetar botão após 2 segundos
-                setTimeout(() => {
-                    copyBtn.textContent = 'COPIA E COLA';
-                    copyBtn.style.background = 'linear-gradient(135deg, #ffcc00 0%, #ff9500 100%)';
-                }, 2000);
-            }).catch(err => {
-                console.error('Erro ao copiar: ', err);
-                copyBtn.textContent = 'ERRO AO COPIAR';
-                copyBtn.style.background = 'linear-gradient(135deg, #ff0000 0%, #990000 100%)';
-                
-                setTimeout(() => {
-                    copyBtn.textContent = 'COPIA E COLA';
-                    copyBtn.style.background = 'linear-gradient(135deg, #ffcc00 0%, #ff9500 100%)';
-                }, 2000);
-            });
-        });
-        
-        // Comandos de teclado
-        const pressedKeys = [];
-        const secretCodeShow = ['Control', 'Alt', 'c'];
-        const secretCodeReset = ['Control', 'Alt', 'r'];
-        
-        window.addEventListener('keydown', (e) => {
-            pressedKeys.push(e.key);
-            
-            // Verificar código para mostrar estatísticas
-            if (pressedKeys.slice(-secretCodeShow.length).join('') === secretCodeShow.join('')) {
-                statsPanel.style.display = 'block';
-            }
-            
-            // Verificar código para resetar estatísticas
-            if (pressedKeys.slice(-secretCodeReset.length).join('') === secretCodeReset.join('')) {
-                if (confirm('Tem certeza que deseja resetar todas as estatísticas?')) {
-                    totalVisits = 0;
-                    totalCopies = 0;
-                    localStorage.setItem('totalVisits', 0);
-                    localStorage.setItem('totalCopies', 0);
-                    totalVisitsSpan.textContent = '0';
-                    totalCopiesSpan.textContent = '0';
-                    alert('Estatísticas resetadas com sucesso!');
-                }
-            }
-            
-            // Manter array com tamanho máximo
-            if (pressedKeys.length > 10) {
-                pressedKeys.shift();
-            }
-        });
-        
-        // Fechar painel de estatísticas
-        closeStats.addEventListener('click', () => {
-            statsPanel.style.display = 'none';
+        document.getElementById('closeStats').addEventListener('click', function() {
+            document.getElementById('statsPanel').style.display = 'none';
         });
     </script>
 </body>
