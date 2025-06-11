@@ -32,6 +32,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: url('FT FUNDO.jpg');
             background-size: cover;
             background-position: center;
             opacity: 0.3;
@@ -240,7 +241,7 @@
 </head>
 <body>
     <div class="bg-container">
-        <div class="bg-image" style="background-image: url('FT%20FUNDO.jpg');"></div>
+        <div class="bg-image"></div>
     </div>
     
     <div class="content">
@@ -333,11 +334,9 @@
             }
         });
         
-        // Copiar PIX - Versão corrigida
-        copyBtn.addEventListener('click', async function() {
-            try {
-                await navigator.clipboard.writeText(pixCode.textContent);
-                
+        // Copiar PIX
+        copyBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(pixCode.textContent).then(() => {
                 // Efeito visual
                 copyBtn.textContent = 'COPIADO!';
                 copyBtn.style.background = 'linear-gradient(135deg, #00ff88 0%, #00b356 100%)';
@@ -358,41 +357,16 @@
                     copyBtn.textContent = 'COPIA E COLA';
                     copyBtn.style.background = 'linear-gradient(135deg, #ffcc00 0%, #ff9500 100%)';
                 }, 2000);
-            } catch (err) {
+            }).catch(err => {
                 console.error('Erro ao copiar: ', err);
                 copyBtn.textContent = 'ERRO AO COPIAR';
                 copyBtn.style.background = 'linear-gradient(135deg, #ff0000 0%, #990000 100%)';
-                
-                // Método alternativo para navegadores mais antigos
-                const textArea = document.createElement('textarea');
-                textArea.value = pixCode.textContent;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    copyBtn.textContent = 'COPIADO!';
-                    copyBtn.style.background = 'linear-gradient(135deg, #00ff88 0%, #00b356 100%)';
-                    
-                    // Incrementar contador de cópias
-                    totalCopies++;
-                    localStorage.setItem('totalCopies', totalCopies);
-                    totalCopiesSpan.textContent = totalCopies;
-                    
-                    // Ativar fogos de artifício
-                    fireworks.start();
-                    setTimeout(() => {
-                        fireworks.stop();
-                    }, 2000);
-                } catch (err) {
-                    console.error('Erro ao copiar (método alternativo): ', err);
-                }
-                document.body.removeChild(textArea);
                 
                 setTimeout(() => {
                     copyBtn.textContent = 'COPIA E COLA';
                     copyBtn.style.background = 'linear-gradient(135deg, #ffcc00 0%, #ff9500 100%)';
                 }, 2000);
-            }
+            });
         });
         
         // Comandos de teclado
