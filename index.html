@@ -1,137 +1,436 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajude o Motoboy!</title>
-  <style>
-    body {
-      background-image: url('FT%20FUNDO.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-    }
-
-    .texto {
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .botao-pix {
-      background: linear-gradient(to right, #ffcc00, #ff9900);
-      border: none;
-      color: black;
-      font-size: 1.5rem;
-      font-weight: bold;
-      padding: 1rem 2rem;
-      margin: 2rem auto;
-      cursor: pointer;
-      border-radius: 10px;
-      box-shadow: 0 0 15px yellow;
-      animation: pulse 2s infinite;
-      display: inline-block;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 10px yellow; }
-      50% { box-shadow: 0 0 25px orange; }
-      100% { box-shadow: 0 0 10px yellow; }
-    }
-
-    #contador {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 1rem;
-      border-radius: 10px;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motoboy dos Sonhos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;700&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Open Sans', sans-serif;
+            overflow-x: hidden;
+            color: white;
+        }
+        
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            animation: pulse 15s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.5;
+                transform: scale(1.02);
+            }
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 204, 0, 0.8), 0 0 30px rgba(255, 204, 0, 0.6);
+            }
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+        
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        .pix-code {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            word-break: break-all;
+            border: 1px solid #ffcc00;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, #ffcc00 0%, #ff9500 100%);
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: shine 3s infinite;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.6);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(1px);
+        }
+        
+        @keyframes shine {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+            }
+        }
+        
+        .copy-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            animation: reflect 3s infinite;
+        }
+        
+        @keyframes reflect {
+            0% {
+                left: -100%;
+            }
+            20%, 100% {
+                left: 100%;
+            }
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+            margin: 0 5px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .lgpd {
+            font-size: 0.8rem;
+            margin-top: 50px;
+            opacity: 0.7;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: explode 1s ease-out forwards;
+        }
+        
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20);
+                opacity: 0;
+            }
+        }
+        
+        .stats-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ffcc00;
+            z-index: 100;
+            display: none;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+        
+        .stats-panel h2 {
+            color: #ffcc00;
+            margin-top: 0;
+        }
+        
+        .stats-panel p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        
+        .stats-panel .close-btn {
+            background-color: #ffcc00;
+            color: #1a1a2e;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <div class="texto">
-    <h1>ENTREGUEI SUA ENCOMENDA... E AGORA ENTREGO UM PEDIDO!</h1>
-    <p>Fala aí! Sou motoboy das ruas e dos corres. Enquanto levo suas encomendas, também tô tentando correr atrás dos meus sonhos.<br>
-    Se quiser me dar uma força com um café, uma ajuda na gasolina, ou só uma boa energia já tá valendo demais.</p>
-
-    <p>Pode ser um lanche, um real ou só aquele "vai na fé"</p>
-    <p>Valeu pela moral! 🙏✌🏍💨</p>
-
-    <button class="botao-pix" onclick="copiarPIX()">COPIE E COLE<br>PIX: 0c397cfc-9a35-4be7-a550-3fcb5c9d1afb</button>
-
-    <p><small>Este site não coleta dados pessoais. Os contadores usam apenas localStorage anônimo, sem identificação individual.</small></p>
-  </div>
-
-  <div id="contador">Acessos: <span id="acessos"></span><br>Botões clicados: <span id="clicks"></span></div>
-
-  <canvas id="fireworks"></canvas>
-
-  <script>
-    let acessos = localStorage.getItem('acessos') || 0;
-    let clicks = localStorage.getItem('clicks') || 0;
-    acessos++;
-    localStorage.setItem('acessos', acessos);
-    document.getElementById('acessos').textContent = acessos;
-    document.getElementById('clicks').textContent = clicks;
-
-    function copiarPIX() {
-      navigator.clipboard.writeText('0c397cfc-9a35-4be7-a550-3fcb5c9d1afb');
-      clicks++;
-      localStorage.setItem('clicks', clicks);
-      document.getElementById('clicks').textContent = clicks;
-      explodirFogos();
-    }
-
-    // Teclas de atalho: Ctrl+Alt+C para mostrar, Ctrl+Alt+R para resetar
-    document.addEventListener('keydown', function (e) {
-      if (e.ctrlKey && e.altKey && e.code === 'KeyC') {
-        document.getElementById('contador').style.display = 'block';
-        setTimeout(() => document.getElementById('contador').style.display = 'none', 5000);
-      }
-      if (e.ctrlKey && e.altKey && e.code === 'KeyR') {
-        localStorage.setItem('acessos', 0);
-        localStorage.setItem('clicks', 0);
-      }
-    });
-
-    // Animação de fogos
-    function explodirFogos() {
-      const canvas = document.getElementById('fireworks');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      for (let i = 0; i < 100; i++) {
-        const x = canvas.width / 2;
-        const y = canvas.height / 2;
-        const angle = Math.random() * 2 * Math.PI;
-        const radius = Math.random() * 200;
-        const fx = x + radius * Math.cos(angle);
-        const fy = y + radius * Math.sin(angle);
-        const color = 'hsl(' + Math.floor(Math.random() * 360) + ', 100%, 50%)';
-        ctx.beginPath();
-        ctx.arc(fx, fy, 3, 0, 2 * Math.PI);
-        ctx.fillStyle = color;
-        ctx.fill();
-      }
-      setTimeout(() => ctx.clearRect(0, 0, canvas.width, canvas.height), 1000);
-    }
-  </script>
+    <div class="bg-container">
+        <div class="bg-image" style="background-image: url('FT%20FUNDO.jpg');"></div>
+    </div>
+    
+    <div class="content">
+        <h1>ENTREGUEI SUA ENCOMENDA... <br>E AGORA ENTREGO UM PEDIDO!</h1>
+        
+        <p>Fala aí! Sou motoboy das ruas e dos corres. Enquanto levo suas encomendas, também tô tentando correr atrás dos meus sonhos.</p>
+        
+        <p>Se quiser me dar uma força <span class="highlight">com um café</span>, uma ajuda na <span class="highlight">gasolina</span>, ou só uma <span class="highlight">boa energia</span> já tá valendo demais.</p>
+        
+        <p>Pode ser um lanche, um real ou só aquele <span class="highlight">"vai na fé"</span></p>
+        
+        <p>Valeu pela moral! <span class="emoji">🙏</span><span class="emoji">✌</span><span class="emoji">🏍</span><span class="emoji">💨</span></p>
+        
+        <div class="pix-code" id="pixCode">0c397cfc-9a35-4be7-a550-3fcb5c9d1afb</div>
+        
+        <button class="copy-btn" id="copyBtn">COPIA E COLA</button>
+        
+        <p class="lgpd">Informação de proteção de dados lei LGPD.</p>
+    </div>
+    
+    <div class="stats-panel" id="statsPanel">
+        <h2>Estatísticas</h2>
+        <p>Total de acessos: <span id="totalVisits">0</span></p>
+        <p>Total de cópias: <span id="totalCopies">0</span></p>
+        <button class="close-btn" id="closeStats">Fechar</button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+    <script>
+        // Contadores
+        let totalVisits = localStorage.getItem('totalVisits') ? parseInt(localStorage.getItem('totalVisits')) : 0;
+        let totalCopies = localStorage.getItem('totalCopies') ? parseInt(localStorage.getItem('totalCopies')) : 0;
+        
+        // Incrementar contador de visitas
+        totalVisits++;
+        localStorage.setItem('totalVisits', totalVisits);
+        
+        // Elementos DOM
+        const copyBtn = document.getElementById('copyBtn');
+        const pixCode = document.getElementById('pixCode');
+        const statsPanel = document.getElementById('statsPanel');
+        const closeStats = document.getElementById('closeStats');
+        const totalVisitsSpan = document.getElementById('totalVisits');
+        const totalCopiesSpan = document.getElementById('totalCopies');
+        
+        // Atualizar contadores no painel
+        totalVisitsSpan.textContent = totalVisits;
+        totalCopiesSpan.textContent = totalCopies;
+        
+        // Configuração de fogos de artifício
+        const container = document.querySelector('.bg-container');
+        const fireworks = new Fireworks.default(container, {
+            autoresize: true,
+            opacity: 0.5,
+            acceleration: 1.05,
+            friction: 0.97,
+            gravity: 1.5,
+            particles: 100,
+            traceLength: 3,
+            traceSpeed: 10,
+            explosion: 5,
+            intensity: 30,
+            flickering: 50,
+            lineStyle: 'round',
+            hue: {
+                min: 30,
+                max: 60
+            },
+            delay: {
+                min: 30,
+                max: 60
+            },
+            rocketsPoint: {
+                min: 50,
+                max: 50
+            },
+            lineWidth: {
+                explosion: {
+                    min: 1,
+                    max: 3
+                },
+                trace: {
+                    min: 1,
+                    max: 2
+                }
+            },
+            brightness: {
+                min: 50,
+                max: 80
+            }
+        });
+        
+        // Copiar PIX - Versão corrigida
+        copyBtn.addEventListener('click', async function() {
+            try {
+                await navigator.clipboard.writeText(pixCode.textContent);
+                
+                // Efeito visual
+                copyBtn.textContent = 'COPIADO!';
+                copyBtn.style.background = 'linear-gradient(135deg, #00ff88 0%, #00b356 100%)';
+                
+                // Incrementar contador de cópias
+                totalCopies++;
+                localStorage.setItem('totalCopies', totalCopies);
+                totalCopiesSpan.textContent = totalCopies;
+                
+                // Ativar fogos de artifício
+                fireworks.start();
+                setTimeout(() => {
+                    fireworks.stop();
+                }, 2000);
+                
+                // Resetar botão após 2 segundos
+                setTimeout(() => {
+                    copyBtn.textContent = 'COPIA E COLA';
+                    copyBtn.style.background = 'linear-gradient(135deg, #ffcc00 0%, #ff9500 100%)';
+                }, 2000);
+            } catch (err) {
+                console.error('Erro ao copiar: ', err);
+                copyBtn.textContent = 'ERRO AO COPIAR';
+                copyBtn.style.background = 'linear-gradient(135deg, #ff0000 0%, #990000 100%)';
+                
+                // Método alternativo para navegadores mais antigos
+                const textArea = document.createElement('textarea');
+                textArea.value = pixCode.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    copyBtn.textContent = 'COPIADO!';
+                    copyBtn.style.background = 'linear-gradient(135deg, #00ff88 0%, #00b356 100%)';
+                    
+                    // Incrementar contador de cópias
+                    totalCopies++;
+                    localStorage.setItem('totalCopies', totalCopies);
+                    totalCopiesSpan.textContent = totalCopies;
+                    
+                    // Ativar fogos de artifício
+                    fireworks.start();
+                    setTimeout(() => {
+                        fireworks.stop();
+                    }, 2000);
+                } catch (err) {
+                    console.error('Erro ao copiar (método alternativo): ', err);
+                }
+                document.body.removeChild(textArea);
+                
+                setTimeout(() => {
+                    copyBtn.textContent = 'COPIA E COLA';
+                    copyBtn.style.background = 'linear-gradient(135deg, #ffcc00 0%, #ff9500 100%)';
+                }, 2000);
+            }
+        });
+        
+        // Comandos de teclado
+        const pressedKeys = [];
+        const secretCodeShow = ['Control', 'Alt', 'c'];
+        const secretCodeReset = ['Control', 'Alt', 'r'];
+        
+        window.addEventListener('keydown', (e) => {
+            pressedKeys.push(e.key);
+            
+            // Verificar código para mostrar estatísticas
+            if (pressedKeys.slice(-secretCodeShow.length).join('') === secretCodeShow.join('')) {
+                statsPanel.style.display = 'block';
+            }
+            
+            // Verificar código para resetar estatísticas
+            if (pressedKeys.slice(-secretCodeReset.length).join('') === secretCodeReset.join('')) {
+                if (confirm('Tem certeza que deseja resetar todas as estatísticas?')) {
+                    totalVisits = 0;
+                    totalCopies = 0;
+                    localStorage.setItem('totalVisits', 0);
+                    localStorage.setItem('totalCopies', 0);
+                    totalVisitsSpan.textContent = '0';
+                    totalCopiesSpan.textContent = '0';
+                    alert('Estatísticas resetadas com sucesso!');
+                }
+            }
+            
+            // Manter array com tamanho máximo
+            if (pressedKeys.length > 10) {
+                pressedKeys.shift();
+            }
+        });
+        
+        // Fechar painel de estatísticas
+        closeStats.addEventListener('click', () => {
+            statsPanel.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
