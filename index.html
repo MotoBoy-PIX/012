@@ -1,205 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motoboy dos Sonhos</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;700&display=swap');
-        
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Open Sans', sans-serif;
-            overflow-x: hidden;
-            color: white;
-        }
-        
-        .bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #e74c3c 0%, #e67e22 50%, #f1c40f 100%);
-            overflow: hidden;
-        }
-        
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        .highlight {
-            color: #fff;
-            font-weight: bold;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-        }
-        
-        .pix-code {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 30px 0;
-            font-family: monospace;
-            font-size: 1.1rem;
-            word-break: break-all;
-            border: 1px solid #fff;
-            color: #fff;
-        }
-        
-        .copy-btn {
-            background: linear-gradient(135deg, #f1c40f 0%, #e67e22 100%);
-            color: #2c3e50;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .copy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
-        
-        .copy-btn:active {
-            transform: translateY(1px);
-        }
-        
-        .emoji {
-            font-size: 1.5rem;
-            margin: 0 5px;
-        }
-        
-        .lgpd {
-            font-size: 0.8rem;
-            margin-top: 50px;
-            opacity: 0.7;
-        }
-        
-        .stats-panel {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #f1c40f;
-            z-index: 100;
-            display: none;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
-        }
-        
-        .stats-panel h2 {
-            color: #f1c40f;
-            margin-top: 0;
-        }
-        
-        .stats-panel p {
-            font-size: 1.2rem;
-            margin: 10px 0;
-        }
-        
-        .stats-panel .close-btn {
-            background-color: #f1c40f;
-            color: #2c3e50;
-            border: none;
-            padding: 5px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        
-        .testimonials {
-            margin: 40px 0;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            border-left: 3px solid #f1c40f;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pedido Entregue</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #e0f7fa, #b3e5fc);
+      font-family: Arial, sans-serif;
+      color: #01579b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #ffffffcc;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: #0277bd;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+
+    .pix {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #004d40;
+      word-break: break-all;
+      background-color: #e0f2f1;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .copy-button {
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .copy-button:hover {
+      background-color: #0277bd;
+    }
+
+    .copy-success {
+      color: green;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      p, .pix, .copy-button {
+        font-size: 1em;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="bg-container"></div>
-    
-    <div class="content">
-        <h1>ENTREGUEI SUA ENCOMENDA... <br>E AGORA ENTREGO UM PEDIDO!</h1>
-        
-        <p>Fala aí! Sou motoboy das ruas e dos corres. Enquanto levo suas encomendas, também tô tentando correr atrás dos meus sonhos.</p>
-        
-        <p>Se quiser me dar uma força <span class="highlight">com um café</span>, uma ajuda na <span class="highlight">gasolina</span>, ou só uma <span class="highlight">boa energia</span> já tá valendo demais.</p>
-        
-        <div class="testimonials">
-            <p>"Esse motoboy é rápido e confiável! Sempre que preciso, ele está lá."</p>
-            <p>- Cliente Satisfeito</p>
-        </div>
-        
-        <p>Pode ser um lanche, um real ou só aquele <span class="highlight">"vai na fé"</span></p>
-        
-        <p>Valeu pela moral! <span class="emoji">🙏</span><span class="emoji">✌</span><span class="emoji">🏍</span><span class="emoji">💨</span></p>
-        
-        <div class="pix-code" id="pixCode">0c397cfc-9a35-4be7-a550-3fcb5c9d1afb</div>
-        
-        <button class="copy-btn" id="copyBtn">COPIA E COLA</button>
-        
-        <p class="lgpd">Informação de proteção de dados lei LGPD.</p>
-    </div>
-    
-    <div class="stats-panel" id="statsPanel">
-        <h2>Obrigado pelo apoio!</h2>
-        <p>Sua contribuição ajuda a manter meu sonho na estrada.</p>
-        <button class="close-btn" id="closeStats">Fechar</button>
-    </div>
+  <div class="container">
+    <h1>ENTREGUEI SEU PEDIDO, E AGORA ENTREGO UM PEDIDO.</h1>
+    <p>Sua contribuição pode fazer com que eu veja minha família mais cedo.</p>
+    <p>Enquanto levo seus pedidos, também tô tentando correr atrás dos meus sonhos!</p>
+    <p>Ajude a atingir meu objetivo diário.</p>
 
-    <script>
-        // Script para copiar o PIX
-        document.getElementById('copyBtn').addEventListener('click', function() {
-            const pixCode = document.getElementById('pixCode');
-            const range = document.createRange();
-            range.selectNode(pixCode);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-            document.execCommand('copy');
-            window.getSelection().removeAllRanges();
-            
-            // Mostrar painel de agradecimento
-            document.getElementById('statsPanel').style.display = 'block';
-        });
-        
-        document.getElementById('closeStats').addEventListener('click', function() {
-            document.getElementById('statsPanel').style.display = 'none';
-        });
-    </script>
+    <div class="pix" id="pixKey">0c397cfc-9a35-4be7-a550-3fcb5c9d1afb</div>
+    <button class="copy-button" onclick="copyPix()">Copiar chave PIX</button>
+    <div class="copy-success" id="copyMsg" style="display: none;">Chave copiada!</div>
+  </div>
+
+  <script>
+    function copyPix() {
+      const pixKey = document.getElementById("pixKey").innerText;
+      navigator.clipboard.writeText(pixKey).then(() => {
+        const msg = document.getElementById("copyMsg");
+        msg.style.display = "block";
+        setTimeout(() => {
+          msg.style.display = "none";
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 </html>
